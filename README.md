@@ -5,12 +5,7 @@ This repository contains AI ALPHA API test automation framework built using Pyth
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Framework Structure](#framework-structure)
-- [Writing Tests](#writing-tests)
-- [Running Tests](#running-tests)
-- [Test Reports](#test-reports)
-- [Contributing](#contributing)
-- [License](#license)
+- [Running Tests](#running-tests-locally)
 
 ## Prerequisites
 
@@ -42,7 +37,7 @@ Follow these steps to set up the framework:
     pip install -r requirements.txt
 
 
-## Installation
+## Running tests locally
 
 Once everything is set up, you can run the tests:
 
