@@ -29,7 +29,7 @@ Follow these steps to set up the framework:
 
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows use 'venv\Scripts\activate'
+    venv\Scripts\activate  # On Mac use 'source venv/bin/activate'
 
 3. Install the required dependencies:
 
