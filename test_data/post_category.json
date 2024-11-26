@@ -1,0 +1,13 @@
+{
+    "Test [xxx]: POST Category Schema Validation" : {
+        "payload": {
+            "name": "catTest",
+            "alias": "CT"
+        },
+        "status_code": 201
+    },
+    "Test [xxx]: POST Category Required Fields Missing" : {
+        "payload": {},
+        "status_code": 400
+    }
+}
