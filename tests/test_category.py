@@ -8,19 +8,45 @@ from test_data.schemas import CATEGORIES_RESPONSE_SCHEMA, CATEGORY_RESPONSE_SCHE
 load_dotenv()
 
 @pytest.fixture(scope="module")
-def api_client():
+def api_client() -> APIClient:
+    """
+    Creates and returns an instance of the APIClient with the base URL and API key.
+
+    Returns:
+        APIClient: An instance of APIClient configured with base URL and headers.
+    """
     return APIClient(os.getenv("BASE_URL"), {
             'accept': 'multipart/form-data',
             'X-API-Key': os.getenv("API_KEY")
             })
 
-def test_get_categories(api_client):
+def test_get_categories(api_client: APIClient) -> None:
+    """
+    Tests the GET endpoint for retrieving all categories.
+
+    Args:
+        api_client (APIClient): The API client used for making requests.
+
+    Raises:
+        AssertionError: If the response does not meet the expected conditions.
+    """
     response = api_client.get("categories")
     Assertions.assert_status_code(response, 200)
     Assertions.validate_schema(response.json(), CATEGORIES_RESPONSE_SCHEMA)
 
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "post_category.json")))
-def test_post_category(api_client, test_name, test_data):
+def test_post_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
+    """
+    Tests the POST endpoint for creating a new category.
+
+    Args:
+        api_client (APIClient): The API client used for making requests.
+        test_name (str): The name of the test case.
+        test_data (dict): The payload and expected status code for the request.
+
+    Raises:
+        AssertionError: If the response does not meet the expected status code or schema.
+    """
     response = api_client.post("category", test_data['payload'])
     Assertions.assert_status_code(response, test_data['status_code'])
     response_data = response.json()
@@ -28,21 +54,52 @@ def test_post_category(api_client, test_name, test_data):
     api_client.delete(f"category/{response_data['category']['category_id']}") if test_data['status_code'] == 201 else None
 
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "delete_category.json")))
-def test_delete_category(api_client, test_name, test_data):
+def test_delete_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
+    """
+    Tests the DELETE endpoint for deleting a category.
+
+    Args:
+        api_client (APIClient): The API client used for making requests.
+        test_name (str): The name of the test case.
+        test_data (dict): The payload and expected response for the request.
+
+    Raises:
+        AssertionError: If the response does not meet the expected conditions.
+    """
     response = api_client.post("category", test_data['payload'])
     response_data = response.json()
     response = api_client.delete(f"category/{response_data['category']['category_id']}")
     Assertions.assert_status_code(response, test_data['status_code'])
     Assertions.assert_response_equals(response, eval(test_data['expected_response']))
 
-def test_get_category(api_client):
+def test_get_category(api_client: APIClient) -> None:
+    """
+    Tests the GET endpoint for retrieving a specific category by ID.
+
+    Args:
+        api_client (APIClient): The API client used for making requests.
+
+    Raises:
+        AssertionError: If the response does not meet the expected conditions.
+    """
     response = api_client.get("category/14")
     Assertions.assert_status_code(response, 200)
     response_data = response.json()
     Assertions.validate_schema(response_data, CATEGORY_RESPONSE_SCHEMA)
 
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "put_category.json")))
-def test_put_category(api_client, test_name, test_data):
+def test_put_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
+    """
+    Tests the PUT endpoint for updating a category.
+
+    Args:
+        api_client (APIClient): The API client used for making requests.
+        test_name (str): The name of the test case.
+        test_data (dict): The payload and expected status code for the request.
+
+    Raises:
+        AssertionError: If the response does not meet the expected conditions.
+    """
     response = api_client.post("category", {'name': 'catTest','alias': 'CT'}, [])
     response_data = response.json()
     response1 = api_client.put(f"category/{response_data['category']['category_id']}", test_data['payload'], Handlers.file_handler("resources", "test_logo.svg")) 

@@ -3,7 +3,7 @@ import json, os
 class Handlers:
 
     @staticmethod
-    def create_test_tuple(path):
+    def create_test_tuple(path: str) -> list[tuple[str, dict]]:
         """
         Reads a JSON file and converts its content into a list of tuples.
 
@@ -35,7 +35,7 @@ class Handlers:
             raise e
         
     @staticmethod
-    def file_handler(path, file_name):
+    def file_handler(path: str, file_name: str) -> list:
         """
         Handles the creation of a file object for upload or further processing.
 
