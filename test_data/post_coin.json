@@ -1,0 +1,52 @@
+{
+    "Test [xxx]: POST Coin Schema Validation" : {
+        "payload": {
+            "name": "coinTest",
+            "alias": "CT",
+            "symbol": "ct",
+            "category_id": 1
+        },
+        "status_code": 201
+    },
+    "Test [xxx]: POST Coin Required Fields Missing" : {
+        "payload": {},
+        "status_code": 400,
+        "expected_response": "{\"coin\": None,\"error\": \"Name, alias, symbol and category are required\",\"success\": False}"
+    },
+    "Test [xxx]: POST Coin Required Field Missing: Name" : {
+        "payload": {
+            "alias": "CT",
+            "symbol": "ct",
+            "category_id": 1
+        },
+        "status_code": 400,
+        "expected_response": "{\"coin\": None,\"error\": \"Name, alias, symbol and category are required\",\"success\": False}"
+    },
+    "Test [xxx]: POST Coin Required Field Missing: Alias" : {
+        "payload": {
+            "name": "coinTest",
+            "symbol": "ct",
+            "category_id": 1
+        },
+        "status_code": 400,
+        "expected_response": "{\"coin\": None,\"error\": \"Name, alias, symbol and category are required\",\"success\": False}"
+    },
+    "Test [xxx]: POST Coin Required Field Missing: Symbol" : {
+        "payload": {
+            "name": "coinTest",
+            "alias": "CT",
+            "category_id": 1
+        },
+        "status_code": 400,
+        "expected_response": "{\"coin\": None,\"error\": \"Name, alias, symbol and category are required\",\"success\": False}"
+    },
+    "Test [xxx]: POST Coin Required Field Missing: Category ID" : {
+        "payload": {
+            "name": "coinTest",
+            "alias": "CT",
+            "symbol": "ct"
+        },
+        "status_code": 400,
+        "expected_response": "{\"coin\": None,\"error\": \"Name, alias, symbol and category are required\",\"success\": False}"
+    }
+}
