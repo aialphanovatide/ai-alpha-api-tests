@@ -15,7 +15,7 @@ def api_client() -> APIClient:
     Returns:
         APIClient: An instance of APIClient configured with base URL and headers.
     """
-    return APIClient(os.getenv("BASE_URL"), {
+    return APIClient(os.getenv("AI_ALPHA_URL"), {
             'accept': 'multipart/form-data',
             'X-API-Key': os.getenv("API_KEY")
             })
