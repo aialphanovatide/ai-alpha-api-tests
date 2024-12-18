@@ -9,5 +9,19 @@
     "Test [xxx]: POST Category Required Fields Missing" : {
         "payload": {},
         "status_code": 400
+    },
+    "Test [xxx]: POST category Required Field Missing: Name" : {
+        "payload": {
+            "alias": "CT"
+        },
+        "status_code": 400,
+        "expected_response": "{\"category\": None,\"error\": \"Name and Alias are required and cannot be null\",\"success\": False}"
+    },
+    "Test [xxx]: POST category Required Field Missing: Alias" : {
+        "payload": {
+            "name": "catTest"
+        },
+        "status_code": 400,
+        "expected_response": "{\"category\": None,\"error\": \"Name and Alias are required and cannot be null\",\"success\": False}"
     }
 }

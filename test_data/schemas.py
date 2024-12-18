@@ -1,10 +1,10 @@
 COIN_SCHEMA ={
-    "type": "object",
+    "type": ["object", "null"],
     "properties": {
         "alias": {"type": ["string", "null"]},
-        "background_color": {"type": "null"},
+        "background_color": {"type": ["string", "null"]},
         "bot_id": {"type": "integer"},
-        "category_id": {"type": "integer"},
+        "category_id": {"type": ["integer", "string"]},
         "created_at": {"type": "string"},
         "gecko_id": {"type": "string"},
         "icon": {"type": "string"},
@@ -17,6 +17,29 @@ COIN_SCHEMA ={
     "required": ["alias", "background_color", "bot_id", "category_id", "created_at",
                  "gecko_id", "icon", "is_active", "name", "symbol", "updated_at"]
 
+}
+
+COIN_RESPONSE_SCHEMA = {
+   "type": "object",
+    "properties": {
+        "coin": COIN_SCHEMA,
+        "error": {"type": ["string", "null"]},
+        "success": {"type": "boolean"},
+    },
+    "required": ["coin", "error", "success"] 
+}
+
+COINS_RESPONSE_SCHEMA = {
+   "type": "object",
+    "properties": {
+        "coins": {
+            "type": "array", 
+            "items": COIN_SCHEMA
+            },
+        "error": {"type": ["string", "null"]},
+        "success": {"type": "boolean"},
+    },
+    "required": ["coins", "error", "success"] 
 }
 
 CATEGORY_SCHEMA = {

@@ -1,0 +1,12 @@
+{
+    "Test [xxx]: PUT Coin Schema Validation" : {
+        "payload": {
+            "name": "coinTest1",
+            "alias": "CT1",
+            "symbol": "ct1",
+            "category_id": 2,
+            "background_color": "#FC5404"
+        },
+        "status_code": 200
+    }
+}
