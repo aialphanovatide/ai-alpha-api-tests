@@ -1,0 +1,10 @@
+{
+    "Test [xxx]: DELETE Category Schema Validation" : {
+        "payload": {
+            "name": "catTest",
+            "alias": "CT"
+        },
+        "status_code": 200,
+        "expected_response": "{\"error\": None, \"success\": True}"
+    }
+}

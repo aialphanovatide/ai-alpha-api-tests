@@ -1,0 +1,10 @@
+{
+    "Test [xxx]: PUT Category Schema Validation" : {
+        "payload": {
+            "name": "catTest1",
+            "alias": "CT1",
+            "border_color": "#FC5404"
+        },
+        "status_code": 200
+    }
+}

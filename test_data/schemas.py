@@ -20,19 +20,19 @@ COIN_SCHEMA ={
 }
 
 CATEGORY_SCHEMA = {
-    "type": "object",
+    "type": ["object", "null"],
     "properties": {
         "alias": {"type": "string"},
-        "border_color": {"type": "string"},
+        "border_color": {"type": ["string", "null"]},
         "category_id": {"type": "integer"},
         "coins": {"type": "array", "items": COIN_SCHEMA},
         "created_at": {"type": "string"},
-        "icon": {"type": "string"},
+        "icon": {"type": ["string", "null"]},
         "is_active": {"type": "boolean"},
         "name": {"type": "string"},
         "updated_at": {"type": "string"},
     },
-    "required": ["alias", "border_color", "category_id", "coins"]
+    "required": ["alias", "name", "category_id", "created_at"]
 }
 
 CATEGORIES_RESPONSE_SCHEMA = {
@@ -46,4 +46,14 @@ CATEGORIES_RESPONSE_SCHEMA = {
         "success": {"type": "boolean"},
     },
     "required": ["categories", "error", "success"] 
+}
+
+CATEGORY_RESPONSE_SCHEMA = {
+   "type": "object",
+    "properties": {
+        "category": CATEGORY_SCHEMA,
+        "error": {"type": ["string", "null"]},
+        "success": {"type": "boolean"},
+    },
+    "required": ["category", "error", "success"] 
 }
