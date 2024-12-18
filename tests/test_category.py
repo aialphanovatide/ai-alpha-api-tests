@@ -7,19 +7,6 @@ from test_data.schemas import CATEGORIES_RESPONSE_SCHEMA, CATEGORY_RESPONSE_SCHE
 
 load_dotenv()
 
-@pytest.fixture(scope="module")
-def api_client() -> APIClient:
-    """
-    Creates and returns an instance of the APIClient with the base URL and API key.
-
-    Returns:
-        APIClient: An instance of APIClient configured with base URL and headers.
-    """
-    return APIClient(os.getenv("AI_ALPHA_URL"), {
-            'accept': 'multipart/form-data',
-            'X-API-Key': os.getenv("API_KEY")
-            })
-
 def test_get_categories(api_client: APIClient) -> None:
     """
     Tests the GET endpoint for retrieving all categories.
