@@ -245,3 +245,111 @@ OHLC_CHART_SCHEMA = {
   },
   "required": ["data", "error"]
 }
+
+BOTS_SCHEMA = {
+    "type": "object",
+    "properties": {
+    "alias": { "type": ["string", "null"] },
+    "background_color": { "type": ["string", "null"] },
+    "category_id": { "type": "integer" },
+    "created_at": { "type": ["string", "null"], "format": "date-time" },
+    "dalle_prompt": { "type": ["string", "null"] },
+    "icon": { "type": ["string", "null"], "format": "uri" },
+    "id": { "type": "integer" },
+    "is_active": { "type": "boolean" },
+    "last_run_status": { "type": ["string", "null"] },
+    "last_run_time": { "type": ["string", "null"], "format": "date-time" },
+    "name": { "type": "string" },
+    "next_run_time": { "type": ["string", "null"], "format": "date-time" },
+    "prompt": { "type": ["string", "null"] },
+    "run_count": { "type": ["integer", "null"] },
+    "run_frequency": { "type": "string" },
+    "status": { "type": ["string", "null"] },
+    "updated_at": { "type":  ["null", "string"], "format": "date-time" }
+    },
+    "required": [
+    "alias",
+    "background_color",
+    "category_id",
+    "created_at",
+    "dalle_prompt",
+    "icon",
+    "id",
+    "is_active",
+    "last_run_status",
+    "last_run_time",
+    "name",
+    "next_run_time",
+    "prompt",
+    "run_count",
+    "run_frequency",
+    "status",
+    "updated_at"
+    ]
+}
+
+NEWS_BOTS_CATEGORY_SCHEMA = {
+    "type": "object",
+    "properties": {
+    "alias": { "type": "string" },
+    "border_color": { "type": "string" },
+    "bots": {
+        "type": "array",
+        "items": BOTS_SCHEMA
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "icon": { "type": "string" },
+    "id": { "type": "integer" },
+    "is_active": { "type": "boolean" },
+    "name": { "type": "string" },
+    "slack_channel": { "type": "string" },
+    "updated_at": { "type":  ["null", "string"], "format": "date-time" }
+    },
+    "required": [
+        "alias",
+        "name"
+    ]
+}
+
+NEWS_BOT_CATEGORY_RESPONSE_SCHEMA = { 
+    "type": "object",
+    "properties": {
+        "data": NEWS_BOTS_CATEGORY_SCHEMA,
+        "error": { "type": ["null", "string"] },
+        "success": { "type": "boolean" }
+    }
+ }
+
+NEWS_BOTS_CATEGORIES_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "data": {
+        "type": "object",
+        "properties": {
+            "categories": {
+            "type": "array",
+            "items": NEWS_BOTS_CATEGORY_SCHEMA,
+            },
+        },
+        "required": ["categories"]
+        },
+        "error": { "type": ["null", "string"] },
+        "success": { "type": "boolean" }
+    },
+    "required": ["error", "success"]
+}
+
+NEWS_BOTS_CATEGORY_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "data": {
+        "type": "object",
+        "properties": {
+            "category": NEWS_BOTS_CATEGORY_SCHEMA
+            }
+        },
+        "error": { "type": ["null", "string"] },
+        "success": { "type": "boolean" }
+    },
+    "required": ["error", "success"]
+}
