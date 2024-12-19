@@ -7,6 +7,11 @@ from test_data.schemas import NEWS_BOTS_CATEGORIES_SCHEMA, NEWS_BOTS_CATEGORY_SC
 
 load_dotenv()
 
+@pytest.mark.parametrize(
+    "api_client", 
+    [{"base_url": os.getenv("NEWS_BOT_URL"), "accept": "application/json"}], 
+    indirect=True
+)
 def test_get_categories(api_client: APIClient) -> None:
     """
     Tests the GET endpoint for retrieving all news bots categories.
@@ -21,7 +26,11 @@ def test_get_categories(api_client: APIClient) -> None:
     Assertions.assert_status_code(response, 200)
     Assertions.validate_schema(response.json(), NEWS_BOTS_CATEGORIES_SCHEMA)
 
-@pytest.mark.parametrize("api_client",[{"content_type": "application/json", "accept": "application/json"}], indirect=True)
+@pytest.mark.parametrize(
+    "api_client", 
+    [{"base_url": os.getenv("NEWS_BOT_URL"), "content_type": "application/json", "accept": "application/json"}], 
+    indirect=True
+)
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "post_news_bot_category.json")))
 def test_post_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
@@ -44,7 +53,11 @@ def test_post_category(api_client: APIClient, test_name: str, test_data: dict) -
         Assertions.assert_response_contains(response_data, eval(test_data['expected_response']))
     api_client.delete(f"category/{response_data['data']['id']}") if test_data['status_code'] == 201 else None
 
-@pytest.mark.parametrize("api_client",[{"content_type": "application/json", "accept": "application/json"}], indirect=True)
+@pytest.mark.parametrize(
+    "api_client", 
+    [{"base_url": os.getenv("NEWS_BOT_URL"), "content_type": "application/json", "accept": "application/json"}], 
+    indirect=True
+)
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "delete_category.json")))
 def test_delete_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
@@ -63,6 +76,11 @@ def test_delete_category(api_client: APIClient, test_name: str, test_data: dict)
     response = api_client.delete(f"category/{response_data['data']['id']}")
     Assertions.assert_status_code(response, test_data['status_code'])
 
+@pytest.mark.parametrize(
+    "api_client", 
+    [{"base_url": os.getenv("NEWS_BOT_URL"), "content_type": "application/json", "accept": "application/json"}], 
+    indirect=True
+)
 def test_get_category(api_client: APIClient) -> None:
     """
     Tests the GET endpoint for retrieving a specific news bot category by ID.
@@ -78,7 +96,11 @@ def test_get_category(api_client: APIClient) -> None:
     response_data = response.json()
     Assertions.validate_schema(response_data, NEWS_BOTS_CATEGORY_SCHEMA)
 
-@pytest.mark.parametrize("api_client",[{"content_type": "application/json", "accept": "multipart/form-data"}], indirect=True)
+@pytest.mark.parametrize(
+    "api_client", 
+    [{"base_url": os.getenv("NEWS_BOT_URL"), "content_type": "application/json", "accept": "application/json"}], 
+    indirect=True
+)
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "put_news_bot_category.json")))
 def test_put_category(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
