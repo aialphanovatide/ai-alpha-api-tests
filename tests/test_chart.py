@@ -1,11 +1,9 @@
 import pytest, os, json
-from dotenv import load_dotenv
 from utils.api_client import APIClient
 from utils.assertions import Assertions
 from utils.handlers import Handlers
 from test_data.schemas import CHART_RESPONSE_SCHEMA, TOP_MOVERS_SCHEMA, OHLC_CHART_SCHEMA, CHART_GET_SCHEMA
 
-load_dotenv()
 
 @pytest.mark.parametrize("api_client",[{"content_type": "application/json", "accept": "application/json"}], indirect=True)
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "post_chart.json")))
