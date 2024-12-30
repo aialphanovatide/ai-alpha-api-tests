@@ -1,0 +1,259 @@
+{
+    "Test [xxx]: POST Chart Schema Validation" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "support_4": 30000, 
+            "temporality": "1d"
+        },
+        "status_code": 201
+    },
+    "Test [xxx]: POST Chart Required Fields Missing" : {
+        "payload": {},
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: coin_id, pair, temporality, coin_name, support_1, support_2, support_3, support_4, resistance_1, resistance_2, resistance_3, resistance_4, is_essential\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: temporality" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500,
+            "support_4": 30000
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: temporality\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: support_4" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: support_4\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: support_3" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: support_3\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: support_2" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_3": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: support_2\",\"message\": None, \"status\":400}"
+    },    
+    "Test [xxx]: POST Chart Required Field Missing: support_1" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_2": 34500, 
+            "support_3": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: support_1\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: resistance_4" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "support_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: resistance_4\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: resistance_3" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "support_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: resistance_3\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: resistance_2" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "resistance_1": 37000, 
+            "support_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_3": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: resistance_2\",\"message\": None, \"status\":400}"
+    },    
+    "Test [xxx]: POST Chart Required Field Missing: resistance_1" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "pair": "usdt", 
+            "support_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_2": 34500, 
+            "support_3": 33000, 
+            "support_4": 31500, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: resistance_1\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: pair" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "is_essential": false, 
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "support_4": 30000, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: pair\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: is_essential" : {
+        "payload": { 
+            "coin_id": 1, 
+            "coin_name": "btc", 
+            "pair": "usdt",
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "support_4": 30000, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: is_essential\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: coin_name" : {
+        "payload": { 
+            "coin_id": 1, 
+            "is_essential": false,  
+            "pair": "usdt",
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "support_4": 30000, 
+            "temporality": "1d"
+        },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: coin_name\",\"message\": None, \"status\":400}"
+    },
+    "Test [xxx]: POST Chart Required Field Missing: coin_id" : {
+        "payload": {  
+            "coin_name": "btc", 
+            "is_essential": false,  
+            "pair": "usdt",
+            "resistance_1": 37000, 
+            "resistance_2": 37500, 
+            "resistance_3": 39000, 
+            "resistance_4": 41000, 
+            "support_1": 34500, 
+            "support_2": 33000, 
+            "support_3": 31500, 
+            "support_4": 30000, 
+            "temporality": "1d"
+    },
+        "status_code": 400,
+        "expected_response": "{\"data\": None,\"error\": \"One or more required fields are missing: coin_id\",\"message\": None, \"status\":400}"
+    }
+}
