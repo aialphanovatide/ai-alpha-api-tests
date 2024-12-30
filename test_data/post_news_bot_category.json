@@ -1,0 +1,29 @@
+{
+    "Test [xxx]: POST News Bots Category Schema Validation" : {
+        "payload": {
+            "alias": "CATTEST1",
+            "name": "CATTEST1",
+            "slack_channel": "slack channel test"
+        },
+        "status_code": 201
+    },
+    "Test [xxx]: POST News Bots Category Required Fields Missing" : {
+        "payload": {},
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Name and alias are required\"}"
+    },
+    "Test [xxx]: POST News Bots Category Required Field Missing: Name" : {
+        "payload": {
+            "alias": "CT"
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Name and alias are required\"}"
+    },
+    "Test [xxx]: POST News Bots Category Required Field Missing: Alias" : {
+        "payload": {
+            "name": "catTest"
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Name and alias are required\"}"
+    }
+}

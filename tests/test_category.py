@@ -1,11 +1,8 @@
 import pytest, os
-from dotenv import load_dotenv
 from utils.api_client import APIClient
 from utils.assertions import Assertions
 from utils.handlers import Handlers
 from test_data.schemas import CATEGORIES_RESPONSE_SCHEMA, CATEGORY_RESPONSE_SCHEMA
-
-load_dotenv()
 
 def test_get_categories(api_client: APIClient) -> None:
     """
