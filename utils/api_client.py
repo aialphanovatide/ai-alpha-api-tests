@@ -82,12 +82,13 @@ class APIClient:
         """
         return requests.put(f"{self.base_url}{endpoint}", data=data, headers=self.headers, files=files)
 
-    def delete(self, endpoint: str) -> Response:
+    def delete(self, endpoint: str, data: Optional[Dict[str, Any]] = None) -> Response:
         """
         Sends a DELETE request to the specified endpoint.
 
         Args:
             endpoint (str): The API endpoint (relative to the base URL).
+            data (dict[str, Any], optional): Data to send with the request (e.g., form data or JSON payload).
 
         Returns:
             Response: The response object from the DELETE request. Contains status code, content, etc.
@@ -95,5 +96,5 @@ class APIClient:
         Raises:
             requests.RequestException: If the DELETE request fails.
         """
-        return requests.delete(f"{self.base_url}{endpoint}", headers=self.headers)
+        return requests.delete(f"{self.base_url}{endpoint}", data=data, headers=self.headers)
 

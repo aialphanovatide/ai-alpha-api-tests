@@ -1,0 +1,10 @@
+{
+    "Test [xxx]: PUT User Schema Validation" : {
+        "payload": { 
+            "birth_date": "01/08/2001",  
+            "full_name": "felicitas pe", 
+            "nickname": "felip1234"
+        },
+        "status_code": 200
+    }
+}

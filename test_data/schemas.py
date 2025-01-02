@@ -582,3 +582,70 @@ NEWS_BOT_RESPONSE_SCHEMA = {
   },
   "required": ["data", "error", "success"]
 }
+
+USER = {
+  "type": "object",
+  "properties": {
+    "auth0id": { "type": ["string", "null"]},
+    "auth_token": { "type": "string" },
+    "birth_date": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "email": { "type": "string", "format": "email" },
+    "email_verified": { "type": ["string", "boolean"]},
+    "full_name": { "type": "string" },
+    "nickname": { "type": "string" },
+    "picture": { "type": ["string", "null"] },
+    "provider": { "type": ["string", "null"] },
+    "purchased_plans": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "user_id": { "type": "integer" }
+  },
+  "required": [
+  "auth0id",
+  "auth_token",
+  "created_at",
+  "email",
+  "email_verified",
+  "full_name",
+  "nickname",
+  "updated_at",
+  "user_id"
+  ]
+}
+
+USERS_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": USER
+    },
+    "message": { "type": "string" },
+    "pagination": { "type": ["object", "null"] },
+    "success": { "type": "boolean" }
+  },
+  "required": ["data", "message"]
+}
+
+USER_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "message": { "type": ["string", "object"] },
+    "success": { "type": "boolean" },
+    "user": USER
+  },
+  "required": ["message", "success"]
+}
+
+USER_RESPONSE_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "data": USER,
+    "message": { "type": "string" },
+    "success": { "type": "boolean" }
+  },
+  "required": ["data", "message", "success"]
+}
