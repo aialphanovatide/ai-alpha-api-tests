@@ -8,7 +8,7 @@ from test_data.schemas import USERS_SCHEMA, USER_SCHEMA, USER_RESPONSE_SCHEMA
 
 def test_get_users(api_client: APIClient) -> None:
     """
-    Tests the GET endpoint for retrieving all news bots data.
+    Tests the GET endpoint for retrieving all users with their purchased plans, with optional pagination.
 
     Args:
         api_client (APIClient): The API client used for making requests.
@@ -29,7 +29,7 @@ def test_get_users(api_client: APIClient) -> None:
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "post_user.json")))
 def test_post_user(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
-    Tests the POST endpoint for creating a new news bot with associated data.
+    Tests the POST endpoint for registering a new user with associated data in the system.
 
     Args:
         api_client (APIClient): The API client used for making requests.
@@ -41,7 +41,6 @@ def test_post_user(api_client: APIClient, test_name: str, test_data: dict) -> No
     """
     response = api_client.post("user", json.dumps(test_data['payload']))
     response_data = response.json()
-    print(response_data)
     Assertions.assert_status_code(response, test_data['status_code'])
     Assertions.validate_schema(response_data, USER_SCHEMA)
     if 'expected_response' in test_data:
@@ -56,7 +55,7 @@ def test_post_user(api_client: APIClient, test_name: str, test_data: dict) -> No
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "delete_user.json")))
 def test_delete_user(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
-    Tests the DELETE endpoint for deleting a news bot.
+    Tests the DELETE endpoint for deleting a user identified by auth0id or email.
 
     Args:
         api_client (APIClient): The API client used for making requests.
@@ -67,9 +66,7 @@ def test_delete_user(api_client: APIClient, test_name: str, test_data: dict) -> 
         AssertionError: If the response does not meet the expected status code or response.
     """
     response = api_client.post("user", json.dumps({"email": "felicitasperedo@gmail.com", "full_name": "felicitas pe", "nickname": "testuser" }))
-    response_data = response.json()
     response = api_client.delete("user", json.dumps({ "email": "felicitasperedo@gmail.com"}))
-    response_data = response.json()
     Assertions.assert_status_code(response, test_data['status_code'])
     Assertions.assert_response_contains(response.json(), eval(test_data['expected_response']))
 
@@ -80,7 +77,7 @@ def test_delete_user(api_client: APIClient, test_name: str, test_data: dict) -> 
 )
 def test_get_user(api_client: APIClient) -> None:
     """
-    Tests the GET endpoint for retrieving information for a specific bot, including related keywords, blacklist items, and site data.
+    Tests the GET endpoint for retrieving a specific user with their purchased plans.
 
     Args:
         api_client (APIClient): The API client used for making requests.
@@ -101,7 +98,7 @@ def test_get_user(api_client: APIClient) -> None:
 @pytest.mark.parametrize("test_name, test_data", Handlers.create_test_tuple(os.path.join(os.curdir, "test_data", "put_user.json")))
 def test_put_user(api_client: APIClient, test_name: str, test_data: dict) -> None:
     """
-    Tests the PUT endpoint for updating an existing bot identified by its id. it allows for modification of various bot properties and associated data.
+    Tests the PUT endpoint for updating an existing user identified by it's id. It allows for modification of various properties and associated data.
 
     Args:
         api_client (APIClient): The API client used for making requests.
