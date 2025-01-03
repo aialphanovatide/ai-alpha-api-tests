@@ -1,0 +1,52 @@
+{
+    "Test [xxx]: POST News Bots Schema Validation" : {
+        "payload": { 
+            "alias": "tc", 
+            "background_color": "#4287f5", 
+            "blacklist": "spam, scam, adult content", 
+            "category_id": 1, 
+            "dalle_prompt": "Dalle Pompt to test", 
+            "name": "testcoin", 
+            "run_frequency": 20, 
+            "url": "https://rss.news.google.com/search?q=tech%20news", 
+            "whitelist": "AI, machine learning, robotics"
+        },
+        "status_code": 201
+    },
+    "Test [xxx]: POST News Bots Required Fields Missing" : {
+        "payload": {},
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Missing field in request data: name\"}"
+    },
+    "Test [xxx]: POST News Bots Required Field Missing: Name" : {
+        "payload": {
+            "alias": "CT"
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Missing field in request data: name\"}"
+    },
+    "Test [xxx]: POST News Bots Required Field Missing: Alias" : {
+        "payload": {
+            "name": "catTest"
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Missing field in request data: alias\"}"
+    },
+    "Test [xxx]: POST News Bots Required Field Missing: Category ID" : {
+        "payload": {
+            "name": "catTest",
+            "alias": "CT"
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Missing field in request data: category_id\"}"
+    },
+    "Test [xxx]: POST News Bots Required Field Missing: Run Frequency" : {
+        "payload": {
+            "name": "catTest",
+            "alias": "CT",
+            "category_id": 1
+        },
+        "status_code": 400,
+        "expected_response": "{\"error\": \"Missing field in request data: run_frequency\"}"
+    }
+}

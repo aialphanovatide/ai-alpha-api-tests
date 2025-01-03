@@ -353,3 +353,232 @@ NEWS_BOTS_CATEGORY_SCHEMA = {
     },
     "required": ["error", "success"]
 }
+
+NEWS_BOTS_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "alias": { "type": ["null", "string"] },
+          "background_color": { "type": ["null", "string"] },
+          "category_id": { "type": "integer" },
+          "created_at": { "type": ["null", "string"], "format": "date-time" },
+          "dalle_prompt": { "type": ["null", "string"] },
+          "icon": { "type": ["null", "string"] },
+          "id": { "type": "integer" },
+          "is_active": { "type": "boolean" },
+          "name": { "type": "string" },
+          "prompt": { "type": ["null", "string"] },
+          "run_frequency": { "type": "string" },
+          "updated_at": { "type": ["null", "string"], "format": "date-time" }
+        },
+        "required": [
+          "alias",
+          "background_color",
+          "category_id",
+          "created_at",
+          "dalle_prompt",
+          "icon",
+          "id",
+          "is_active",
+          "name",
+          "prompt",
+          "run_frequency",
+          "updated_at"
+        ]
+      }
+    },
+    "success": { "type": "boolean" }
+  },
+  "required": ["data", "success"]
+}
+
+POST_NEWS_BOT_RESPONSE = {
+  "type": "object",
+  "properties": {
+    "bot": {
+      "type": "object",
+      "properties": {
+        "alias": { "type": "string" },
+        "background_color": { "type": "string", "format": "color" },
+        "category_id": { "type": "integer" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "dalle_prompt": { "type": "string" },
+        "icon": { "type": "string", "format": "uri" },
+        "id": { "type": "integer" },
+        "is_active": { "type": "boolean" },
+        "last_run_status": { "type": ["string", "null"] },
+        "last_run_time": { "type": ["string", "null"], "format": "date-time" },
+        "name": { "type": "string" },
+        "next_run_time": { "type": ["string", "null"], "format": "date-time" },
+        "prompt": { "type": "string" },
+        "run_count": { "type": "integer" },
+        "run_frequency": { "type": "integer" },
+        "status": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "alias",
+        "background_color",
+        "category_id",
+        "created_at",
+        "dalle_prompt",
+        "icon",
+        "id",
+        "is_active",
+        "name",
+        "run_count",
+        "run_frequency",
+        "status",
+        "updated_at"
+      ]
+    },
+    "data": { "type": ["object", "null"] },
+    "error": { "type": ["object", "null", "string"] },
+    "message": { "type": "string" },
+    "success": { "type": "boolean" }
+  }
+}
+
+NEWS_BOT_METRICS_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "articles_processed": { "type": "integer" },
+              "articles_saved": { "type": "integer" },
+              "bot_id": { "type": "integer" },
+              "cpu_percent": { "type": "number" },
+              "end_time": { "type": ["string", "null"], "format": "date-time" },
+              "error_reasons": { "type": ["string", "null"] },
+              "filter_reasons": { "type": ["string", "null"] },
+              "id": { "type": "integer" },
+              "memory_percent": { "type": "number" },
+              "start_time": { "type": ["string", "null"], "format": "date-time" },
+              "total_articles_found": { "type": "integer" },
+              "total_errors": { "type": "integer" },
+              "total_filtered": { "type": "integer" },
+              "total_runtime": { "type": ["string", "null"] }
+            },
+            "required": [
+              "articles_processed",
+              "articles_saved",
+              "bot_id",
+              "cpu_percent",
+              "end_time",
+              "error_reasons",
+              "filter_reasons",
+              "id",
+              "memory_percent",
+              "start_time",
+              "total_articles_found",
+              "total_errors",
+              "total_filtered",
+              "total_runtime"
+            ]
+          }
+        },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "current_page": { "type": "integer" },
+            "has_next": { "type": "boolean" },
+            "has_prev": { "type": "boolean" },
+            "per_page": { "type": "integer" },
+            "total_items": { "type": "integer" },
+            "total_pages": { "type": "integer" }
+          },
+          "required": [
+            "current_page",
+            "has_next",
+            "has_prev",
+            "per_page",
+            "total_items",
+            "total_pages"
+          ]
+        }
+      },
+      "required": ["metrics", "pagination"]
+    },
+    "error": { "type": ["string", "null"] },
+    "success": { "type": "boolean" }
+  },
+  "required": ["data", "error", "success"]
+}
+
+NEWS_BOT_RESPONSE_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "alias": { "type": "string" },
+        "background_color": { "type": "string" },
+        "blacklist": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "category_id": { "type": "integer" },
+        "created_at": { "type": ["string", "null"], "format": "date-time" },
+        "dalle_prompt": { "type": "string" },
+        "icon": { "type": "string", "format": "uri" },
+        "id": { "type": "integer" },
+        "is_active": { "type": "boolean" },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "last_run_status": { "type": ["string", "null"] },
+        "last_run_time": { "type": ["string", "null"], "format": "date-time" },
+        "name": { "type": "string" },
+        "next_run_time": { "type": ["string", "null"], "format": "date-time" },
+        "prompt": { "type": "string" },
+        "run_count": { "type": ["integer", "null"] },
+        "run_frequency": { "type": "string" },
+        "site": {
+          "type": "object",
+          "properties": {
+            "bot_id": { "type": "integer" },
+            "created_at": { "type": ["string", "null"], "format": "date-time" },
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "updated_at": { "type": ["string", "null"], "format": "date-time" },
+            "url": { "type": "string", "format": "uri" }
+          },
+          "required": ["bot_id", "id", "name", "url"]
+        },
+        "status": { "type": ["string", "null"] },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "alias",
+        "background_color",
+        "blacklist",
+        "category_id",
+        "dalle_prompt",
+        "icon",
+        "id",
+        "is_active",
+        "keywords",
+        "name",
+        "prompt",
+        "run_frequency",
+        "site",
+        "status",
+        "updated_at"
+      ]
+    },
+    "error": { "type": ["string", "null"] },
+    "success": { "type": "boolean" }
+  },
+  "required": ["data", "error", "success"]
+}

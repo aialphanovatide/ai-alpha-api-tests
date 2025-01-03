@@ -1,0 +1,14 @@
+{
+    "Test [xxx]: PUT News Bot Schema Validation" : {
+        "payload": {
+            "name": "coinTest1",
+            "alias": "CT1",
+            "category_id": 2,
+            "background_color": "#4287f5",
+            "dalle_prompt": "Update Dalle Prompt to test", 
+            "run_frequency": 25,
+            "prompt":  "Update Prompt to test"
+        },
+        "status_code": 200
+    }
+}
