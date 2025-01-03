@@ -1,0 +1,16 @@
+{
+    "Test [xxx]: DELETE User Schema Validation" : {
+        "payload": { 
+            "auth0id": "apple|001945.25da9f640de8487a8cf6ae750c9598f6.1323", 
+            "birth_date": "01/08/2020", 
+            "email": "felicitasperedo97+2@gmail.com", 
+            "email_verified": false, 
+            "full_name": "felicitas", 
+            "nickname": "felip2", 
+            "picture": null, 
+            "provider": null
+        },
+        "status_code": 200,
+        "expected_response": "{\"message\": \"User account and associated data deleted successfully\", \"success\": True}"
+    }
+}
